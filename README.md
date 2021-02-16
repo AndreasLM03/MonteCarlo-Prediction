@@ -18,7 +18,7 @@ from scipy.stats import norm
 
 Stocks = ['TCEHY']
 
-t_intervals = 365*3
+t_intervals = 30
 iterations = 10
 StartDate = '2015-01-01'
 
@@ -95,6 +95,8 @@ for i in Stocks:
     print(price_list)
     plt.figure(figsize=(10,6))
     plt.plot(price_list)
+    plt.xlabel('Forecast in days')
+    plt.ylabel('Price forecast in USD')
 
 
     print("")
@@ -102,7 +104,10 @@ for i in Stocks:
     print("Indicate matrix to 100%")
     print(price_list1)
     plt.figure(figsize=(10,6))
+    
     plt.plot(price_list1)
+    plt.xlabel('Forecast in days')
+    plt.ylabel('Percentage change')
 
     print("")
     print("Mittelwert der Vorhersage")
