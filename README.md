@@ -5,7 +5,7 @@ Monte Carlo simulation is a method from stochastics, in which a very large numbe
 
 
 
-<img src= "03.png" width="600">
+<img src= "P03.png" width="600">
 
 
 ````python
@@ -118,6 +118,6 @@ for i in Stocks:
 
 <img src= "02.png" width="600">
 
-<img src= "03.png" width="600">
+<img src= "P03.png" width="600">
 
-<img src= "04.png" width="600">
+<img src= "P04.png" width="600">
