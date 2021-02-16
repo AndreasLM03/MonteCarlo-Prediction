@@ -8,6 +8,10 @@ Monte Carlo simulation is a method from stochastics, in which a very large numbe
 <img src= "P03.png" width="600">
 
 
+
+The following code describes how to calculate a 30-day price prediction for the Tencent stock based on the MonteCarlo method
+
+
 ````python
 import numpy as np  
 import pandas as pd  
