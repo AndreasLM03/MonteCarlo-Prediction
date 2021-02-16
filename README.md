@@ -5,6 +5,9 @@ Monte Carlo simulation is a method from stochastics, in which a very large numbe
 
 
 
+<img src= "03.png" width="600">
+
+
 ````python
 import numpy as np  
 import pandas as pd  
@@ -105,3 +108,11 @@ for i in Stocks:
     print("Mittelwert der Vorhersage")
     print(price_list1[-1].mean())
 ````
+
+<img src= "01.png" width="600">
+
+<img src= "02.png" width="600">
+
+<img src= "03.png" width="600">
+
+<img src= "04.png" width="600">
