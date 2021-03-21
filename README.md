@@ -194,15 +194,21 @@ plt.ylabel("Price")
 plt.title('Monte Carlo Analysis for Apple')
 ````
 
-````python
+<img src= "p1.png" width="400">
 
+
+````python
+runs = 10000
+simulations = np.zeros(runs)
+np.set_printoptions(threshold=5)
+for run in range(runs):    
+    simulations[run] = stock_monte_carlo(start_price,days,mu,sigma)[days-1]
+    
+plt.hist(simulations,bins=200)
+plt.figtext(0.6, 0.8, s="Start Price: $%.2f" %start_price)
+plt.figtext(0.6, 0.7, "Average End Price: $%.2f" % simulations.mean())
+plt.axvline(x=np.median(simulations) , linewidth=4, color='r')
+plt.title(u"Distribution of share prices after %s days" % days, weight='bold');
 ````
 
-````python
-
-````
-
-
-
-<img src= "p8.png" width="400">
 <img src= "p9.png" width="400">
