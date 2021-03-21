@@ -132,13 +132,77 @@ rets.head(10)
 
 
 ````python
+plt.scatter(rets.mean(), rets.std(),alpha = 0.5,s =np.pi*20)
+plt.ylim([rets.std().min()*(0.95),rets.std().max()*(1.05)])
+plt.xlim([rets.mean().min()*(0.95),rets.mean().max()*(1.05)])
+plt.xlabel('Expected returns')
+plt.ylabel('Risk')
+
+for label, x, y in zip(rets.columns, rets.mean(), rets.std()):
+    plt.annotate(
+        label, 
+        xy = (x, y), xytext = (5, 5),
+        textcoords = 'offset points', ha = 'left', va = 'bottom')
+````
+
+<img src= "p6.png" width="400">
+
+
+Value at Risk using the "Bootstrap" method. A risk measure of a portfolio. 5th quantile of the loss function: 
+Specifies to what level of loss will not be exceeded within a given time period (start end) with this probability# Your code here.
+
+````python
+sns.distplot(AAPL['Daily Return'].dropna(),bins=100)
+rets['JD'].quantile(0.05)
+````
+
+<img src= "p7.png" width="400">
+
+The empirical 0.05 quantile of the daily return. This means that with 95% confidence our worst daily loss will not be above the calculated value
+
+
+# Value at Risk with the Monte Carlo Method
+We will use the Monte Carlo method to run many trials with random market conditions. Then we will calculate the portfolio losses for each trial. Subsequently, we will use the aggregation of all these simulations to determine how risky the stock is.
+Let's start with a brief explanation of what we will do:
+
+The equation for Geometric Brownian Motion is defined as follows:
+
+<img src="https://render.githubusercontent.com/render/math?math=\frac{\Delta A}{A} = \mu\Delta t + \sigma \epsilon \sqrt{\Delta t}">
+
+
+````python
+days = 365
+dt = 1/days
+mu = rets.mean()['AAPL']
+sigma = rets.std()['AAPL']
+start_price = AAPL['Adj Close'][-1] ## start und endwert
+def stock_monte_carlo(start_price,days,mu,sigma):
+    price = np.zeros(days)
+    price[0] = start_price
+    shock = np.zeros(days)
+    drift = np.zeros(days)
+    for x in range(1,days):
+        shock[x] = np.random.normal(loc=mu * dt, scale=sigma * np.sqrt(dt))
+        drift[x] = mu * dt
+        price[x] = price[x-1] + (price[x-1] * (drift[x] + shock[x]))
+    return price
+
+for run in range(100):
+    plt.plot(stock_monte_carlo(start_price,days,mu,sigma))
+plt.xlabel("Days")
+plt.ylabel("Price")  
+plt.title('Monte Carlo Analysis for Apple')
+````
+
+````python
+
+````
+
+````python
 
 ````
 
 
 
-<img src= "p5.png" width="600">
-<img src= "p6.png" width="400">
-<img src= "p7.png" width="400">
 <img src= "p8.png" width="400">
 <img src= "p9.png" width="400">
