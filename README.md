@@ -1,6 +1,10 @@
 # MonteCarlo-Prediction
 
 
+
+
+
+
 Monte Carlo simulation is a method from stochastics, in which a very large number of similar random experiments forms the basis. An attempt is made to solve problems that cannot be solved analytically, or can only be solved at great expense, numerically with the aid of probability theory. As basis above all the law of the large numbers is to be seen. The random experiments can either be carried out in real life - for example by rolling dice - or in computer calculations using Monte Carlo algorithms. In the latter, in order to simulate random events, apparently random numbers are calculated, which are also called pseudo-random numbers.
 
 <img src= "p1.png" width="400">
@@ -60,9 +64,8 @@ tech_rets.head(10)
  | 2019-04-03 |	0.006855 |	-0.003789 |	0.003705 |	0.000660 | 
 
 
-
 ````python
-# täglichen prozentuellen Renditen von zwei Aktien mittel Jointplot vergleichen
+# Compare daily percentage returns of two stocks by means of jointplot
 sns.jointplot('AAPL','FB',tech_rets,kind='scatter')
 ````
 <img src= "p2.png" width="400">
@@ -79,15 +82,58 @@ returns_fig.map_upper(plt.scatter)
 returns_fig.map_lower(sns.kdeplot)
 returns_fig.map_diag(plt.hist,bins=30)
 ````
+
 <img src= "p4.png" width="600">
+
+
+
+````python
+# daily close values
+returns_fig = sns.PairGrid(closing_df)
+returns_fig.map_upper(plt.scatter)
+returns_fig.map_lower(sns.kdeplot)
+returns_fig.map_diag(plt.hist,bins=30)
+````
+
+<img src= "p5.png" width="600">
+
+````python
+# Correlation diagramm (corrplot)
+tech_corr = tech_rets.corr()
+tech_corr
+````
+| Symbols |	AAPL |	FB |	AMZN |	JD |
+| :---: | :---: | :---: | :---: | :---: |
+| AAPL |	1.000000 |	0.712022 |	0.678212 |	0.560722 |
+| FB |	0.712022 |	1.000000 |	0.680606 |	0.484784 |
+| AMZN |	0.678212 |	0.680606 |	1.000000 |	0.560289 |
+| JD |	0.560722 |	0.484784 |	0.560289 |	1.000000 |
+
+
+
+````python
+## Risk Analysis
+rets = tech_rets.dropna()
+rets.head(10)
+````
+
+ |    Symbols |	     AAPL |	     FB |	   AMZN |	    JD |    
+ |     :---:      | :---:      | :---:      | :---:      | :---:  | 
+ | 2019-03-22 |	-0.020708 |	-0.010477 |	-0.029952 |	-0.026426 | 
+ | 2019-03-25 |	-0.012091 |	0.011866 |	0.005377 |	0.013929 | 
+ | 2019-03-26 |	-0.010332 |	0.008359 |	0.005354 |	0.014794 | 
+ | 2019-03-27 |	0.008994 |	-0.010794 |	-0.010125 |	0.012149 | 
+ | 2019-03-28 |	0.001326 |	-0.001929 |	0.004372 |	0.008573 | 
+ | 2019-03-29 |	0.006518 |	0.006886 |	0.004133 |	0.025162 | 
+ | 2019-04-01 |	0.006791 |	0.012058 |	0.018779 |	0.036816 | 
+ | 2019-04-02 |	0.014536 |	0.032602 |	-0.000116 |	-0.031030 | 
+ | 2019-04-03 |	0.006855 |	-0.003789 |	0.003705 |	0.000660 | 
+ | 2019-04-04 |	0.001740 |	0.014291 |	-0.001011 |	-0.00198 | 
+
+
 ````python
 
 ````
-
-````python
-
-````
-
 
 
 
