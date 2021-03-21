@@ -155,10 +155,12 @@ Specifies to what level of loss will not be exceeded within a given time period 
 sns.distplot(AAPL['Daily Return'].dropna(),bins=100)
 rets['JD'].quantile(0.05)
 ````
-
+````python
+-0.04390417202851068
+````
 <img src= "p7.png" width="400">
 
-The empirical 0.05 quantile of the daily return. This means that with 95% confidence our worst daily loss will not be above the calculated value
+The empirical 0.05 quantile of the daily return. This means that with 95% confidence our worst daily loss will not be above the calculated value -0.04390417202851068
 
 
 # Value at Risk with the Monte Carlo Method
